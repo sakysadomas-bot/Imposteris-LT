@@ -183,9 +183,8 @@ function showWord() {
   locked = true;
   showBtn.disabled = true;
 
-  vibrate();
   overlay.innerText = playersData[current];
-  overlay.classList.remove("hidden");
+  overlay.classList.add("show");
 
   let duration = showTime;
   if (playersData[current].startsWith("TU APSIMETĖLIS") && showTime < 3500) {
@@ -193,7 +192,7 @@ function showWord() {
   }
 
   setTimeout(() => {
-    overlay.classList.add("hidden");
+    overlay.classList.remove("show");
     nextPlayer();
   }, duration);
 }
@@ -206,8 +205,6 @@ function nextPlayer() {
   if (current < playersData.length) {
     playerLabel.innerText = "Žaidėjas " + (current + 1);
   } else {
-    game.classList.add("hidden");
-    end.classList.remove("hidden");
     new Audio("https://actions.google.com/sounds/v1/drums/drum_roll.ogg").play();
   }
 }
